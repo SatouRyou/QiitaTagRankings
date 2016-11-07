@@ -11,6 +11,7 @@ import org.springframework.web.client.RestOperations;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,13 +31,15 @@ public class QiitaRestClient implements IQiitaClient {
 
         List<TagInfoDto> tagInfoDtos = new ArrayList<TagInfoDto>();
 
-        for ( int i = 0 ; i > 100 ; i++ ) {
+        for ( int i = 1 ; i <= 100 ; i++ ) {
 
             StringBuilder uri = new StringBuilder();
             uri.append( "http://qiita.com/api/v2/tags?page=" );
             uri.append( i );
             uri.append( "&per_page=100" );
-            tagInfoDtos.addAll( restOperations.getForObject(uri.toString(), TagInfoDto.class); )
+
+            // 疎通
+            tagInfoDtos.addAll( Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class) ) );
         }
 
         return null;
