@@ -4,6 +4,7 @@ import com.qiitatagrankings.domain.connection.IQiitaClient;
 import com.qiitatagrankings.domain.dto.ItemDto;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
@@ -20,8 +21,11 @@ import java.util.List;
 @Component
 public class QiitaRestClient implements IQiitaClient {
 
-    @Autowired
     private RestOperations restOperations;
+
+    public QiitaRestClient( RestTemplateBuilder restTemplateBuilder ) {
+        restOperations = restTemplateBuilder.build();
+    }
 
     /**
      * 登録されているタグ情報を10000件取得する
@@ -36,9 +40,12 @@ public class QiitaRestClient implements IQiitaClient {
             StringBuilder uri = new StringBuilder();
             uri.append( "http://qiita.com/api/v2/tags?page=" );
             uri.append( i );
-            uri.append( "&per_page=100" );
+            uri.append( "&per_page=100&" );
+            uri.append( "token=" );
+            uri.append( "トークン" );
 
             // 疎通
+            System.out.println( uri.toString() );
             tagInfoDtos.addAll( Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class) ) );
         }
 
