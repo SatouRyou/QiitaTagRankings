@@ -40,16 +40,15 @@ public class QiitaRestClient implements IQiitaClient {
             StringBuilder uri = new StringBuilder();
             uri.append( "http://qiita.com/api/v2/tags?page=" );
             uri.append( i );
-            uri.append( "&per_page=100&" );
-            uri.append( "token=" );
-            uri.append( "トークン" );
+            uri.append( "&per_page=100" );
+            uri.append( "&token=" );
+            uri.append( "" );
 
             // 疎通
-            System.out.println( uri.toString() );
             tagInfoDtos.addAll( Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class) ) );
         }
 
-        return null;
+        return tagInfoDtos;
     }
 
     /**

@@ -26,19 +26,19 @@ public class ItemBuilder {
         StringBuilder item = new StringBuilder();
 
         item.append( FIRST_TITLE );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( FIRST_MESSAGE_1 );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( FIRST_MESSAGE_2 );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( FIRST_MESSAGE_3 );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( TAG_RANKING_TITLE );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( TABLE_HEADER );
-        item.append( "<br>" );
+        item.append( "\n" );
         item.append( TABLE_LINE );
-        item.append( "<br>" );
+        item.append( "\n" );
 
         int count = 1;
         for( TagInfoDto dto : tagInfoDtos ) {
@@ -54,7 +54,7 @@ public class ItemBuilder {
             item.append( dto.getFollowers_count() );
             item.append("|");
 
-            item.append( "<br>" );
+            item.append( "\n" );
 
             count++;
 

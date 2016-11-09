@@ -32,13 +32,13 @@ public class PostingService {
         List<TagInfoDto> tagInfoDtos = qiitaClient.getTagInfoDtos();
 
         // タグがフォローされていなければ除外
-        tagInfoDtos.removeIf(tagInfoDto -> tagInfoDto.getFollowers_count() > 0 );
+        tagInfoDtos.removeIf(tagInfoDto -> tagInfoDto.getFollowers_count() == 0 );
 
         // 投稿記事がなければ除外
-        tagInfoDtos.removeIf(tagInfoDto -> tagInfoDto.getItems_count() > 0 );
+        tagInfoDtos.removeIf(tagInfoDto -> tagInfoDto.getItems_count() == 0 );
 
         // 投稿記事順にソート
-        tagInfoDtos.sort((s1, s2) -> s1.getItems_count() - s2.getItems_count());
+        tagInfoDtos.sort((s1, s2) -> s2.getItems_count() - s1.getItems_count() );
 
         // 投稿記事内容を記載
         System.out.println( itemBuilder.build( tagInfoDtos ) );
