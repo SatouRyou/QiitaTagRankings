@@ -35,19 +35,24 @@ public class QiitaRestClient implements IQiitaClient {
 
         List<TagInfoDto> tagInfoDtos = new ArrayList<TagInfoDto>();
 
-        for ( int i = 1 ; i <= 100 ; i++ ) {
+        // 現状のタグの総数が不明のため、エラー対策
+        try {
+            // 100*100まで取得可能
+            for (int i = 1; i <= 50; i++) {
 
-            StringBuilder uri = new StringBuilder();
-            uri.append( "http://qiita.com/api/v2/tags?page=" );
-            uri.append( i );
-            uri.append( "&per_page=100" );
-            uri.append( "&token=" );
-            uri.append( "" );
+                StringBuilder uri = new StringBuilder();
+                uri.append("https://qiita.com/api/v2/tags?page=");
+                uri.append(i);
+                uri.append("&per_page=100&sort=count");
+                uri.append("&token=");
+                uri.append("a8b0d2bc8a6c11e5ee4fe4fd0190e2ece4952dc7");
 
-            // 疎通
-            tagInfoDtos.addAll( Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class) ) );
+                // 疎通
+                tagInfoDtos.addAll(Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class)));
+            }
+        } catch ( Exception e ) {
+
         }
-
         return tagInfoDtos;
     }
 
