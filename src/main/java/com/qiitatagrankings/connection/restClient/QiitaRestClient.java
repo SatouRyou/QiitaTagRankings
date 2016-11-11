@@ -1,5 +1,6 @@
 package com.qiitatagrankings.connection.restClient;
 
+import com.qiitatagrankings.config.ConfigReader;
 import com.qiitatagrankings.domain.connection.IQiitaClient;
 import com.qiitatagrankings.domain.dto.ItemDto;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
@@ -21,9 +22,17 @@ import java.util.List;
 @Component
 public class QiitaRestClient implements IQiitaClient {
 
+    @Autowired
+    private ConfigReader configReader;
+
     private RestOperations restOperations;
 
+    /**
+     * コンストラクタ
+     * @param restTemplateBuilder
+     */
     public QiitaRestClient( RestTemplateBuilder restTemplateBuilder ) {
+
         restOperations = restTemplateBuilder.build();
     }
 
@@ -45,7 +54,7 @@ public class QiitaRestClient implements IQiitaClient {
                 uri.append(i);
                 uri.append("&per_page=100&sort=count");
                 uri.append("&token=");
-                uri.append("a8b0d2bc8a6c11e5ee4fe4fd0190e2ece4952dc7");
+                uri.append( this.configReader.getSettings().getToken() );
 
                 // 疎通
                 tagInfoDtos.addAll(Arrays.asList(restOperations.getForObject(uri.toString(), TagInfoDto[].class)));
