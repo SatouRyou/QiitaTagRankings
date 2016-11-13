@@ -1,6 +1,8 @@
 package com.qiitatagrankings.domain.bilder;
 
+import com.qiitatagrankings.config.ConfigReader;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ import java.util.List;
 @Component
 @Service
 public class ItemBuilder {
+
+    @Autowired
+    private ConfigReader configReader;
 
     private final String FIRST_TITLE = "#始めに";
     private final String FIRST_MESSAGE_1 = "この記事は、Qiitaに投稿されている記事のタグ情報をランキング化したものです。";
@@ -58,8 +63,11 @@ public class ItemBuilder {
 
             count++;
 
+            // 大量のデータをプッシュすると、遅延が発生してしまうため上限を設定
+            if ( count == this.configReader.getSettings().getView_limit() ) {
+                break;
+            }
         }
-
         return item.toString();
     }
 }

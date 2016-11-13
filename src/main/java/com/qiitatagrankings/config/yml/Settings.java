@@ -15,4 +15,6 @@ public class Settings {
 
     /** アクセストークン */
     private String token;
+    /** 表示制限 */
+    private int view_limit;
 }
