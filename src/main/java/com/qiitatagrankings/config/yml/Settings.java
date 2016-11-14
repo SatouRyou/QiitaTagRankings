@@ -17,4 +17,6 @@ public class Settings {
     private String token;
     /** 表示制限 */
     private int view_limit;
+    /** タグ情報のJSON保存箇所 */
+    private String qiita_tagu_json;
 }
