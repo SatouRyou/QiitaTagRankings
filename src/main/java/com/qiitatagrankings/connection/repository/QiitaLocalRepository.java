@@ -1,7 +1,7 @@
 package com.qiitatagrankings.connection.repository;
 
 import com.qiitatagrankings.config.ConfigReader;
-import com.qiitatagrankings.domain.connection.IQiitaRepository;
+import com.qiitatagrankings.domain.gateway.IQiitaRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

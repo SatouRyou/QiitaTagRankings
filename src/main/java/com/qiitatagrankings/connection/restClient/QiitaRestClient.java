@@ -1,7 +1,7 @@
 package com.qiitatagrankings.connection.restClient;
 
 import com.qiitatagrankings.config.ConfigReader;
-import com.qiitatagrankings.domain.connection.IQiitaClient;
+import com.qiitatagrankings.domain.gateway.IQiitaClient;
 import com.qiitatagrankings.domain.dto.ItemDto;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
