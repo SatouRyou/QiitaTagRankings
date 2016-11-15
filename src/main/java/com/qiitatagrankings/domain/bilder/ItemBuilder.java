@@ -45,11 +45,10 @@ public class ItemBuilder {
         item.append( TABLE_LINE );
         item.append( "\n" );
 
-        int count = 1;
         for( TagInfoDto dto : tagInfoDtos ) {
 
             item.append("|");
-            item.append( count );
+            item.append( dto.getRank() );
             item.append("|");
             item.append( "[" + dto.getId() + "]" );
             item.append( "(http://qiita.com/tags/" + dto.getId() +")" );
@@ -61,10 +60,8 @@ public class ItemBuilder {
 
             item.append( "\n" );
 
-            count++;
-
             // 大量のデータをプッシュすると、遅延が発生してしまうため上限を設定
-            if ( count == this.configReader.getSettings().getView_limit() ) {
+            if ( dto.getRank() == this.configReader.getSettings().getView_limit() ) {
                 break;
             }
         }

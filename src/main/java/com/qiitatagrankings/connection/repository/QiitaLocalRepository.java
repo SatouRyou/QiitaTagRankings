@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,6 +21,7 @@ import java.io.PrintWriter;
  * Qiitaの情報をローカルに保存する
  * Created by teradashoutarou on 2016/11/14.
  */
+@Component
 public class QiitaLocalRepository implements IQiitaRepository {
 
     @Autowired

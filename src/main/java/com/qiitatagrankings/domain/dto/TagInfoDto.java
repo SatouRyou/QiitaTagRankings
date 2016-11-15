@@ -16,4 +16,6 @@ public class TagInfoDto {
     private String id;
     /** 投稿記事数 */
     private int items_count;
+    /** 順位 */
+    private int rank;
 }
