@@ -1,4 +1,4 @@
 settings:
     token: ""
-    view_limit: "101"
+    view_limit: "100"
     qiita_tagu_json: ""
