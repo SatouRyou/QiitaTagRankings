@@ -1,4 +1,4 @@
-package com.qiitatagrankings.domain.connection;
+package com.qiitatagrankings.domain.gateway;
 
 /**
  * Qiita情報を保存する

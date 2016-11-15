@@ -1,4 +1,4 @@
-package com.qiitatagrankings.domain.connection;
+package com.qiitatagrankings.domain.gateway;
 
 import com.qiitatagrankings.domain.dto.ItemDto;
 import com.qiitatagrankings.domain.dto.TagInfoDto;

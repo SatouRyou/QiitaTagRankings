@@ -1,8 +1,7 @@
 package com.qiitatagrankings.domain.service;
 
 import com.qiitatagrankings.domain.bilder.ItemBuilder;
-import com.qiitatagrankings.domain.connection.IQiitaClient;
-import com.qiitatagrankings.domain.dto.ItemDto;
+import com.qiitatagrankings.domain.gateway.IQiitaClient;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
