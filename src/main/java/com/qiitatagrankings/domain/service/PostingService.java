@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Created by teradashoutarou on 2016/11/06.
@@ -52,14 +56,14 @@ public class PostingService {
             rank++;
         }
 
-        // 取得データを保存
-        this.saveJason( tagInfoDtos );
-
         // 投稿記事部分を生成
         String item = itemBuilder.build( tagInfoDtos );
 
         // 投稿記事内容を記載
         System.out.println( item );
+
+        // 取得データを保存
+        this.saveJason( tagInfoDtos );
 
 //        // 記事情報を生成
 //        ItemDto itemDto = new ItemDto();
@@ -69,6 +73,10 @@ public class PostingService {
 //        qiitaClient.putItem( itemDto );
     }
 
+    /**
+     * オブジェクトをJSON化して保存する
+     * @param objact
+     */
     public void saveJason( Object objact ) {
 
         String json = JSON.encode( objact );

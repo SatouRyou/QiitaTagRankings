@@ -1,12 +1,15 @@
 package com.qiitatagrankings.connection.repository;
 
 import com.qiitatagrankings.config.ConfigReader;
+import com.qiitatagrankings.domain.dto.TagInfoDto;
 import com.qiitatagrankings.domain.gateway.IQiitaRepository;
+import net.arnx.jsonic.JSON;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,6 +19,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Qiitaの情報をローカルに保存する
@@ -67,17 +74,7 @@ public class QiitaLocalRepository implements IQiitaRepository {
 
             // Json読み込み
             String json = new String(buffer);
-            JSONObject jsonObject = new JSONObject(json);
-
-            // データ追加
-            JSONArray jsonArray = jsonObject.getJSONArray("Employee");
-            JSONObject jsonOneRecord = new JSONObject();
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                jsonOneRecord = jsonArray.getJSONObject(i);
-            }
-
-            return jsonOneRecord.toString();
+            return json;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,5 +83,27 @@ public class QiitaLocalRepository implements IQiitaRepository {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 保存されている過去のタグ情報を取得する
+     * @return
+     */
+    @Override
+    public Map<String, TagInfoDto> getOldTag() {
+
+        // 過去のJSONデータをオブジェクト化する
+        TagInfoDto[] tagInfoDtos = JSON.decode( this.getQiitaTagJson(), TagInfoDto[].class );
+
+        // Stream化しラムダ式を使えるようにする
+        Stream<TagInfoDto> taginfoArrayStream = Arrays.stream( tagInfoDtos );
+
+        // 戻り値
+        Map<String, TagInfoDto> res = new HashMap<>();
+
+        // idをkey値にMap化
+        taginfoArrayStream.forEach(d -> res.put(d.getId(), d));
+
+        return res;
     }
 }
