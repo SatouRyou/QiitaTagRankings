@@ -3,6 +3,7 @@ package com.qiitatagrankings.connection.repository;
 import com.qiitatagrankings.config.ConfigReader;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
 import com.qiitatagrankings.domain.gateway.IQiitaRepository;
+import com.qiitatagrankings.domain.utils.DateUtils;
 import net.arnx.jsonic.JSON;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +43,11 @@ public class QiitaLocalRepository implements IQiitaRepository {
 
         try {
             // jsonファイル出力
-            File file = new File( this.configReader.getSettings().getQiita_tagu_json() ) ;
+            String path =
+                    this.configReader.getSettings().getQiita_tagu_json() +
+                            DateUtils.getNowDate( DateUtils.YYYYmmDD ) +
+                            ".json";
+            File file = new File( path ) ;
             FileWriter filewriter;
 
             filewriter = new FileWriter( file );
@@ -66,7 +71,11 @@ public class QiitaLocalRepository implements IQiitaRepository {
         // 読み込みファイル
         InputStream input;
         try {
-            input = new FileInputStream( this.configReader.getSettings().getQiita_tagu_json() );
+            String path =
+                    this.configReader.getSettings().getQiita_tagu_json() +
+                            DateUtils.getYesterDay( DateUtils.YYYYmmDD ) +
+                            ".json";
+            input = new FileInputStream( path );
             int size = input.available();
             byte[] buffer = new byte[size];
             input.read(buffer);
