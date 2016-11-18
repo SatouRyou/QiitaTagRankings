@@ -38,6 +38,7 @@ public class PostingService {
     @RequestMapping( value = "/")
     public void postingTagRanking() {
 
+        // タグの最新情報
         List<TagInfoDto> tagInfoDtos = qiitaClient.getTagInfoDtos();
 
         // タグがフォローされていなければ除外
