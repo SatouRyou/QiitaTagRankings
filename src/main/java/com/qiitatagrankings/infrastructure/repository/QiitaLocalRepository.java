@@ -1,16 +1,13 @@
-package com.qiitatagrankings.connection.repository;
+package com.qiitatagrankings.infrastructure.repository;
 
 import com.qiitatagrankings.config.ConfigReader;
 import com.qiitatagrankings.domain.dto.TagInfoDto;
 import com.qiitatagrankings.domain.gateway.IQiitaRepository;
 import com.qiitatagrankings.domain.utils.DateUtils;
 import net.arnx.jsonic.JSON;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,8 +51,8 @@ public class ItemBuilder {
         item.append( TABLE_LINE );
         item.append( "\n" );
 
-        Map<String, TagInfoDto> taginfoMap = qiitaRepository.getOldTag();
-
+//        Map<String, TagInfoDto> taginfoMap = qiitaRepository.getOldTag();
+        Map<String, TagInfoDto> taginfoMap = new HashMap<>();
         for( TagInfoDto dto : tagInfoDtos ) {
 
             item.append("|");
